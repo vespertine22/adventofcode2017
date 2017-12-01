@@ -1,24 +1,15 @@
-#/usr/bin/python3
-
+#!/usr/bin/python3
 
 with open('input.txt', 'r') as f:
     for line in f:
-        result = 0
-        for i in range(len(line)-2):
-            if(line[i] == line[i+1]):
+        line = line.strip() # remove \n
+        result = result2 = 0
+        length = len(line)
+        halflength = int(length/2)
+        for i in range(length):
+            if(line[i] == line[(i+1) % length]):
                 result += int(line[i])
+            if(line[i] == line[(i + halflength) % length]):
+                result2 += int(line[i])
 
-        # wrap around
-        if(line.strip()[-1] == line[0]):
-            result += int(line[0])
-
-print(result)
-
-
-
-
-
-
-
-
-
+        print('Result #1: ' + str(result) + '\nResult #2: ' + str(result2))
